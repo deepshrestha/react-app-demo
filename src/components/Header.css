@@ -1,0 +1,8 @@
+.App-header {
+    background-color: #282c34;
+    min-height: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    color: white;
+}
