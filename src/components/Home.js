@@ -27,7 +27,7 @@ class Home extends Component {
     }); */
 
     componentDidMount() {
-        $.get(
+        /* $.get(
             {
                 url: "http://www.json-generator.com/api/json/get/cwqHRamfaW?indent=2",
                 sucesss: function(data){
@@ -51,9 +51,9 @@ class Home extends Component {
                 }
             );
             //console.log(this.state.postComponent);
-        });
+        }); */
 
-        /* fetch("http://www.json-generator.com/api/json/get/cwqHRamfaW?indent=2")
+        fetch("http://www.json-generator.com/api/json/get/cwqHRamfaW?indent=2")
         .then( results => {
             return results.json();
         })
@@ -73,7 +73,7 @@ class Home extends Component {
                 }
             );
             //console.log(this.state.postComponent);
-        }) */
+        });
     }
 
     render() {
