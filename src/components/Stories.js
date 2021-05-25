@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Stories extends Component {
-    render(){
+const Stories = () => {
+   
         return (
             <div className="card" style={{width: "18rem"}}>
                 <div className="card-header">
@@ -35,7 +35,7 @@ class Stories extends Component {
                 </ul>
             </div>
         )
-    }
+    
 }
 
 export default Stories;

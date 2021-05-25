@@ -1,9 +1,11 @@
 import React from 'react';
 
-function Main(props){
+const Main = (props) =>{
+    const {textColor, textSize } = props
     return (
+        
         <main>
-            <h1 style={{color: props.textColor, fontSize: props.textSize}}>This is a body section.</h1>
+            <h1 style={{color: textColor, fontSize: textSize}}>This is a body section.</h1>
         </main>
     )
 }

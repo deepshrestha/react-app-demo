@@ -1,6 +1,6 @@
 import React from 'react';
 
-function showSettings(){
+const showSettings = () => {
     $('[data-toggle="popover_settings"]').popover({
         html : true, 
         content: function() {
@@ -9,7 +9,7 @@ function showSettings(){
     });
 }
 
-function Settings(){
+const Settings = () => {
     return (
         <div>
             <a className="nav-link" href="#" data-toggle="popover_settings" title="Settings" data-placement="bottom" data-content="">

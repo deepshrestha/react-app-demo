@@ -1,19 +1,15 @@
 import React from 'react';
 import './Post.css';
 
-class Post extends React.Component {
-    constructor(){
-        super();
-    }
-
-    render(){
+const Post = (props) => {
+    const { postTitle, name } = props
         return (
             <div className="font-text">
                 <div className="card">
                     <div className="card-body">
-                        <p className="card-title font-weight-bold">{this.props.name}</p>
+                        <p className="card-title font-weight-bold">{name}</p>
                         <p className="card-text">
-                            {this.props.postTitle}
+                            {postTitle}
                         </p>
                     </div>
                     <div className="card-footer">
@@ -42,7 +38,6 @@ class Post extends React.Component {
                 <br/>
             </div>
         )
-    }    
-}
+}    
 
 export default Post;

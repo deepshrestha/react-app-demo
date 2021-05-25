@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { useState, useEffect } from "react";
 import './Home.css';
 import Post from './Post'
 import Header from './Header';
@@ -6,16 +6,10 @@ import Footer from './Footer';
 import Stories from './Stories';
 import Advertisement from './Advertisement';
 
-class Home extends Component {
+const Home = () => {
+    const [postComponent, setPostComponent] = useState([]);
 
-    constructor(){
-        super();
-        this.state = {
-            postComponent: []
-        };
-    }
-
-    componentDidMount() {
+    useEffect(() =>
         fetch("http://www.json-generator.com/api/json/get/cwqHRamfaW?indent=2")
         .then( results => {
             return results.json();
@@ -30,15 +24,10 @@ class Home extends Component {
                     />
                 )
             });
-            this.setState(
-                {
-                    postComponent: postData
-                }
-            );
-        });
-    }
+            setPostComponent(postData);
+        }), [])
 
-    render() {
+
 
         return (
             <div className="font-text">
@@ -85,7 +74,7 @@ class Home extends Component {
                                         </div>
                                     </div>
                                     <div className="pt-2">
-                                        { this.state.postComponent }
+                                        { postComponent }
                                     </div>
                                 </div>
                                 <div className="col-md-4 box">
@@ -104,7 +93,6 @@ class Home extends Component {
                 </div>
             </div>
         )
-    }
 }
 
 export default Home;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function showNotification(){
+const showNotification = () =>{
     $('[data-toggle="popover_notification"]').popover({
         html : true, 
         content: function() {
@@ -9,7 +9,7 @@ function showNotification(){
     });
 }
 
-function Notification(){
+const Notification = () => {
     return (
         <div>
             <a className="nav-link" href="#" data-toggle="popover_notification" title="Notifications" data-placement="bottom" data-content="">
