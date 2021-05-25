@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 const emailPattern = RegExp(
     /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
@@ -24,7 +23,8 @@ class LoginForm extends Component {
             password: null,
             errors: {
                 email: "",
-                password: ""
+                password: "",
+                message: ""
             }
         };
         /* this.onHandleSubmit = this.onHandleSubmit.bind(this);
@@ -32,6 +32,7 @@ class LoginForm extends Component {
     }
     
     onHandleSubmit = e => {
+
         e.preventDefault();
 
         if(formValid(this.state.errors)){
@@ -40,13 +41,15 @@ class LoginForm extends Component {
                 Password: ${this.state.password}
             `);
 
-            //console.log(this.state.email, this.state.password);
+            console.log(this.state.email, this.state.password);
 
             if ((this.state.email === 'admin@admin.com' && this.state.password === 'deep@123')) {
                 this.props.history.push('/home');
             }
-            else
-                console.log("Login credential is not matched!")
+            else{
+                console.log("Login credential is not matched!");
+            }
+               
         }
         else 
             console.log("Form is not valid!");
@@ -58,10 +61,6 @@ class LoginForm extends Component {
         const {name, value} = e.target;
         
         let errors = this.state.errors;
-
-        //console.log(name, value);
-
-        //console.log(emailPattern.test(value));
 
         switch(name){
             case 'email':
@@ -89,42 +88,41 @@ class LoginForm extends Component {
         const {errors} = this.state;
 
         return (
-            <div className="text-center" style={{margin: "100px"}}>
+            <div className="text-center" style={{margin: "80px"}}>
                 <form className="form-signin" onSubmit={this.onHandleSubmit}>
                     <img className="mb-4" src="/src/images/user-login.jpg" alt="" width="72" height="72" />
-                    <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+                    <h1 className="h3 mb-3">Please sign in</h1>
                     <div className="row">
-                        <div className="col-md-6 offset-3">
+                        <div className="col-md-7 offset-2">
                             <label htmlFor="inputEmail" className="sr-only">Email address</label>
                             <input 
                                 type="email" 
                                 name="email"
-                                className="form-control-sm" 
+                                className="form-control-sm inputText" 
                                 placeholder="Email address" 
-                                size="40"
+                                size="35"
                                 required
                                 autoFocus
                                 onChange={this.onHandleChange} />
-                            {errors.email.length > 0 && (<div style={{color: "red"}}>{errors.email}</div>)}
+                            {errors.email.length > 0 && (<div className="inputError">{errors.email}</div>)}
                         </div>
                     </div>
-                    <div className="row m-1">
-                        <div className="col-md-6 offset-3">
+                    <div className="row">
+                        <div className="col-md-7 offset-2">
                             <label htmlFor="inputPassword" className="sr-only">Password</label>
                             <input 
                                 type="password" 
                                 name="password" 
-                                className="form-control-sm" 
+                                className="form-control-sm inputText" 
                                 placeholder="Password" 
-                                size="40"
+                                size="35"
                                 required
                                 onChange={this.onHandleChange} />     
-                                {errors.password.length > 0 && (<div>{errors.password}</div>)}                           
-                        </div>
-                        
+                                {errors.password.length > 0 && (<div className="inputError">{errors.password}</div>)}
+                        </div>                        
                     </div>
                     <div className="m-2">
-                        <button className="btn btn-sm btn-primary">Sign in</button>
+                        <button className="btn btn-md btn-primary">Sign in</button>
                     </div>
                     <p className="mt-4 mb-3 text-muted">&copy; 2019</p>
                 </form>

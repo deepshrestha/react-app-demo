@@ -33,7 +33,7 @@ function Header(props){
                         </li>
                         <li className="nav-item active">
                             <Link className="nav-link" to="/logout">
-                                <img title="Logout" src="/src/images/logout.png" />
+                                <img title="Logout" src="/src/images/logout1.png" height="24" />
                             </Link>
                         </li>
                     </ul>

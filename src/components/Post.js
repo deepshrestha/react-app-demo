@@ -20,10 +20,10 @@ class Post extends React.Component {
                         <small className="text-muted">Last updated 3 mins ago</small>
                     </div>
                     <div className="p-2" style={{backgroundColor:"#fff2f2", border: "1px solid #edeaea"}}>
-                        <div className="row" style={{marginLeft:40}}>
+                        <div className="row" style={{marginLeft: 90}}>
                             <div className="col-md-4">
                                 <small className="small">
-                                    <a href="#"><img title="Like" src="/src/images/like.png" height="20" /></a>
+                                    <a href="#"><img title="Like" src="/src/images/like.png" height="20" style={{"WebkitTransform": "scaleX(-1)", "transform": "scaleX(-1)"}} /></a>
                                 </small>
                             </div>
                             <div className="col-md-4">

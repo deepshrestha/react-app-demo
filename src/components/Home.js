@@ -3,7 +3,8 @@ import './Home.css';
 import Post from './Post'
 import Header from './Header';
 import Footer from './Footer';
-import postData from './../../post';
+import Stories from './Stories';
+import Advertisement from './Advertisement';
 
 class Home extends Component {
 
@@ -14,45 +15,7 @@ class Home extends Component {
         };
     }
 
-    /* postComponent = postData
-    .map(post => {
-        return (                
-            <Post
-                key={post.id}
-                name={post.name}
-                email={post.email}
-                phone={post.phone}
-            />
-        )
-    }); */
-
     componentDidMount() {
-        /* $.get(
-            {
-                url: "http://www.json-generator.com/api/json/get/cwqHRamfaW?indent=2",
-                sucesss: function(data){
-                    return data;
-                }
-            }
-        )
-        .then(data => {
-            let postData = data.map(post =>{
-                return (
-                    <Post
-                        key={post.id}
-                        name={post.name}
-                        postTitle={post.postTitle}
-                    />
-                )
-            });
-            this.setState(
-                {
-                    postComponent: postData
-                }
-            );
-            //console.log(this.state.postComponent);
-        }); */
-
         fetch("http://www.json-generator.com/api/json/get/cwqHRamfaW?indent=2")
         .then( results => {
             return results.json();
@@ -72,7 +35,6 @@ class Home extends Component {
                     postComponent: postData
                 }
             );
-            //console.log(this.state.postComponent);
         });
     }
 
@@ -105,7 +67,6 @@ class Home extends Component {
                                         <div className="card">
                                         <p className="card-header font-weight-bold">Create a post</p>
                                         <div className="card-body">
-                                            {/* <p className="card-title font-weight-bold">How are you feeling today?</p> */}
                                             <textarea className="form-control form-rounded" placeholder="How are you feeling today?" />
                                             <div className="text-right mt-2">
                                                 <div className="float-left">
@@ -124,34 +85,13 @@ class Home extends Component {
                                         </div>
                                     </div>
                                     <div className="pt-2">
-                                        {/* this.postComponent */}
                                         { this.state.postComponent }
                                     </div>
                                 </div>
                                 <div className="col-md-4 box">
-                                    <div className="card" style={{width: "18rem"}}>
-                                        <div className="card-header">
-                                            <strong>Stories</strong>
-                                        </div>
-                                        <ul className="list-group list-group-flush">
-                                            <li className="list-group-item">Cras justo odio</li>
-                                            <li className="list-group-item">Dapibus ac facilisis in</li>
-                                            <li className="list-group-item">Vestibulum at eros</li>
-                                        </ul>
-                                    </div>
+                                    <Stories/>
                                     <hr />
-                                    <div className="card" style={{width: "18rem"}}>
-                                        <div className="card-header">
-                                            <strong>Adertisement</strong>
-                                        </div>
-                                        <ul className="list-group list-group-flush">
-                                            <li className="list-group-item">Cras justo odio</li>
-                                            <li className="list-group-item">Dapibus ac facilisis in</li>
-                                            <li className="list-group-item">Vestibulum at eros</li>
-                                            <li className="list-group-item">Dapibus ac facilisis in</li>
-                                            <li className="list-group-item">Vestibulum at eros</li>
-                                        </ul>
-                                    </div>
+                                    <Advertisement/>
                                 </div>
                             </div>
                         </div>  

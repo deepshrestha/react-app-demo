@@ -8,8 +8,10 @@ class ErrorPage extends Component {
     render(){
         return (
             <div className="text-center" style={{margin: "100px"}}>
-                <p>Page not found!</p>
-                <p>Error: 404</p>
+                <h4>
+                    <p>Page not found!</p>
+                    <p>Error: 404</p>
+                </h4>
             </div>
         )
     }
