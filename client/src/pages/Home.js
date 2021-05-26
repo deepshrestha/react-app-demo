@@ -1,30 +1,12 @@
-import React, { useEffect, useState } from "react";
-import Advertisement from "./Advertisement";
-import Footer from "./Footer";
-import Header from "./Header";
-import "./Home.css";
-import Post from "./Post";
-import Stories from "./Stories";
+import React from "react";
+import Advertisement from "../components/Advertisement";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import "../components/Home.css";
+import Stories from "../components/Stories";
+import PostsContainer from "../containers/PostsContainer";
 
 const Home = () => {
-  const [postComponent, setPostComponent] = useState([]);
-
-  useEffect(
-    () =>
-      fetch("http://www.json-generator.com/api/json/get/cwqHRamfaW?indent=2")
-        .then((result) => {
-          return result.json();
-        })
-        .then((data) => {
-          const postData = data.map((post) => {
-            return (
-              <Post key={post.id} name={post.name} postTitle={post.postTitle} />
-            );
-          });
-          setPostComponent(postData);
-        }),
-    []
-  );
   return (
     <div className="font-text">
       <div className="row">
@@ -83,7 +65,9 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="pt-2">{postComponent}</div>
+                <div className="pt-2">
+                  <PostsContainer />
+                </div>
               </div>
               <div className="col-md-4 box">
                 <Stories />
