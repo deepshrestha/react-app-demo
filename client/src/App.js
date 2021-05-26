@@ -2,15 +2,15 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import ErrorPage from "./components/ErrorPage";
-import Home from "./components/Home";
-import LoginForm from "./components/LoginForm";
+import HomeContainer from "./containers/HomeContainer";
+import LoginContainer from "./containers/LoginContainer";
 
 const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={LoginForm} />
-        <Route path="/home" component={Home} />
+        <Route exact path="/" component={LoginContainer} />
+        <Route path="/home" component={HomeContainer} />
         <Route component={ErrorPage} />
       </Switch>
     </Router>
