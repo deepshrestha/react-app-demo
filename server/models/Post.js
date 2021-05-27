@@ -3,36 +3,36 @@ const mongoose = require("mongoose");
 const PostSchema = new mongoose.Schema(
   {
     userId: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     desc: {
-        type: String,
-        max: 500
-    }, 
+      type: String,
+      max: 500,
+    },
     img: {
-        type: String
+      type: String,
     },
     taggedFriends: {
-        type: Array,
-        default: []
+      type: Array,
+      default: [],
     },
     feeling: {
-        type: String
+      type: String,
     },
     likes: {
-        type: Array,
-        default: []
+      type: Array,
+      default: [],
     },
     comments: {
-        type: Array,
-        default: []
-    }, 
-    sharedBy: {
-        type: Array,
-        default: []
-    }
+      type: Array,
+      default: [],
     },
+    sharedBy: {
+      type: Array,
+      default: [],
+    },
+  },
   { timestamps: true }
 );
 
