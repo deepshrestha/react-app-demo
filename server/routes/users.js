@@ -1,10 +1,14 @@
-const express = require("express");
-const router = express.Router();
-const mongoose = require("mongoose");
+const router = require("express").Router()
+const UserController = require("../controllers/User")
 
-const UserController = require("../controllers/User");
 
-router.get("/users", UserController.getUsersList);
-router.post("/user/add", UserController.addNewUser);
+//get a user
+router.get("/:id", UserController.getUser)
+
+//delete user
+router.delete("/:id", UserController.deleteUser)
+
+//update user
+router.put("/:id", UserController.updateUser)
 
 module.exports = router;

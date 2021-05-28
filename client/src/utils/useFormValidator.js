@@ -22,6 +22,8 @@ const FormValidator = (initialState, validation, callBack) => {
     setIsSubmitting(true);
   };
 
+  
+
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
       callBack();
