@@ -1,7 +1,7 @@
-const UsersData = require("../models/User");
+const usersData = require("../models/User");
 
 exports.getUsersList = (req, res) => {
-  UsersData.find({}, (err, result) => {
+  usersData.find({}, (err, result) => {
     if (err) {
       res.send(err);
     }

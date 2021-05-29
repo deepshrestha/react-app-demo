@@ -1,5 +1,7 @@
+const webpack = require("webpack");
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const dotenv = require("dotenv-webpack");
 
 module.exports = {
   mode: "development",
@@ -26,6 +28,7 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: "./public/index.html",
     }),
+    new dotenv(),
   ],
   devServer: {
     historyApiFallback: true,

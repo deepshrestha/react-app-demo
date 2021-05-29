@@ -1,39 +1,96 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-const FormValidator = (initialState, validation, callBack) => {
-  const [formState, setFormState] = useState(initialState);
-  const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
+export const useFormValidator = (props) => {
+  const [fields, setFields] = useState(props);
 
-  const onHandleChange = (e) => {
-    const { name, value } = e.target;
+  const emailPattern = RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
 
-    setFormState({
-      ...formState,
-      [name]: value,
+  const formValid = function (fields) {
+    let valid = true;
+
+    Object.values(fields).forEach(function (value) {
+      value.length == 0 && (valid = false);
     });
 
-    setErrors(validation(formState));
+    return valid;
   };
 
-  const onHandleSubmit = (e) => {
-    e.preventDefault();
-    setErrors(validation(formState));
-    setIsSubmitting(true);
-  };
+  const onHandleSubmit = (event) => {
+    event.preventDefault();
+    Object.keys(fields).map((field) => {
+      if (event.target[field] !== undefined)
+        validate(field, fields[field], event.target[field].type, fields.errors);
+    });
 
-  useEffect(() => {
-    if (Object.keys(errors).length === 0 && isSubmitting) {
-      callBack();
+    if (formValid(fields)) {
+      resetForm(event);
+      return true;
+    } else {
+      let errors = fields.errors;
+      Object.keys(errors).every(function (key) {
+        if (errors[key].length > 0) {
+          event.target[key].focus();
+          return false;
+        } else {
+          return true;
+        }
+      });
+      return false;
     }
-  }, [errors]);
+  };
+
+  const onHandleChange = (event) => {
+    event.preventDefault();
+    const { name, value, type } = event.target;
+    let errors = props.errors;
+    validate(name, value, type, errors);
+  };
+
+  const onHandleBlur = (e) => {
+    e.preventDefault();
+    const { name, value, type } = e.target;
+    let errors = props.errors;
+    validate(name, value, type, errors);
+  };
+
+  function validate(name, value, type, errors) {
+    switch (type) {
+      case "text":
+        errors[name] =
+          value.length == 0 ? `${name} is required`.toUpperCase() : "";
+        break;
+      case "password":
+        errors[name] =
+          value.length == 0 ? `${name} is required`.toUpperCase() : "";
+        break;
+      case "email":
+        errors.email = !emailPattern.test(value)
+          ? "Email is invalid!".toUpperCase()
+          : "";
+        break;
+      default:
+        break;
+    }
+
+    setFields({
+      ...fields,
+      errors,
+      [name]: value,
+    });
+  }
+
+  const resetForm = (event) => {
+    Object.keys(fields).forEach((field) => {
+      if (event.target[field] !== undefined) {
+        event.target[field].value = "";
+      }
+    });
+  };
 
   return {
     onHandleChange,
     onHandleSubmit,
-    formState,
-    errors,
+    onHandleBlur,
+    fields,
   };
 };
-
-export default FormValidator;
