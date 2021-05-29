@@ -1,9 +1,9 @@
 import React from "react";
 
-const Login = ({ onHandleSubmit, onHandleChange, errors }) => {
+const Login = ({ onFormSubmit, onHandleChange, errors, onHandleBlur }) => {
   return (
     <div className="text-center">
-      <form className="form-signin" onSubmit={onHandleSubmit}>
+      <form className="form-signin" onSubmit={onFormSubmit}>
         <img
           className="mb-4"
           src="/src/images/user-login.jpg"
@@ -49,6 +49,7 @@ const Login = ({ onHandleSubmit, onHandleChange, errors }) => {
           <button className="btn btn-md btn-primary">Sign in</button>
         </div>
       </form>
+      {/* <Link to="/register">Register</Link> */}
     </div>
   );
 };

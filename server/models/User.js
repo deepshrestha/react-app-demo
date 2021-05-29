@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema(
   {
+    fullname: {
+      type: String,
+      require: true,
+    },
     username: {
       type: String,
       require: true,
@@ -9,7 +13,7 @@ const UserSchema = new mongoose.Schema(
       max: 20,
       unique: true,
     },
-    email: {  
+    email: {
       type: String,
       required: true,
       max: 50,
@@ -30,16 +34,16 @@ const UserSchema = new mongoose.Schema(
     },
     desc: {
       type: String,
-      max:50
+      max: 50,
     },
     city: {
       type: String,
-      max: 50
+      max: 50,
     },
     job: {
       type: String,
-      max: 50
-    }
+      max: 50,
+    },
   },
   { timestamps: true }
 );

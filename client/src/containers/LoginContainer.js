@@ -1,10 +1,11 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import Login from "../pages/Login";
-import useFormValidator from "../utils/useFormValidator";
-import validation from "../validations/LoginValidation";
+import { useFormValidator } from "../utils/useFormValidator";
 
 const LoginContainer = () => {
+  console.log(process.env.API_URL);
+
   const history = useHistory();
 
   const initialState = {
@@ -13,28 +14,30 @@ const LoginContainer = () => {
     errors: {
       email: "",
       password: "",
-      message: "",
     },
   };
 
-  const formSubmit = () => {
-    if (
-      formState.email === "admin@admin.com" &&
-      formState.password === "deep@123"
-    ) {
-      history.push("/home");
-    } else {
-      alert("Login credential is not matched!");
+  const { onHandleChange, onHandleSubmit, fields } =
+    useFormValidator(initialState);
+
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    const { email, password } = fields;
+    if (onHandleSubmit(event)) {
+      if (email === "admin@admin.com" && password === "deep@123") {
+        history.push("/home");
+      } else {
+        alert("Login credential is not matched!");
+      }
     }
   };
 
-  const { onHandleSubmit, onHandleChange, errors, formState } =
-    useFormValidator(initialState, validation, formSubmit);
+  const { errors } = fields;
 
   return (
     <>
       <Login
-        onHandleSubmit={onHandleSubmit}
+        onFormSubmit={onFormSubmit}
         onHandleChange={onHandleChange}
         errors={errors}
       />
