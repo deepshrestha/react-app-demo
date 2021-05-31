@@ -61,12 +61,9 @@ export const useFormValidator = (props) => {
           value.length == 0 ? `${name} is required`.toUpperCase() : "";
         break;
       case "email":
-        errors.email =
-          value.length == 0
-            ? `${name} is required`.toUpperCase()
-            : !emailPattern.test(value)
-            ? "Email is invalid!".toUpperCase()
-            : "";
+        errors.email = !emailPattern.test(value)
+          ? "Email is invalid!".toUpperCase()
+          : "";
         break;
       default:
         break;

@@ -1,56 +1,127 @@
+import {
+  Avatar,
+  Box,
+  Button,
+  Link,
+  makeStyles,
+  TextField,
+  Typography,
+} from "@material-ui/core";
+import { common } from "@material-ui/core/colors";
 import React from "react";
+import { useHistory } from "react-router";
+import ErrorMessage from "../components/ErrorMessage";
+import CIBTLogo from "../images/cibtlogo.jpg";
 
-const Login = ({ onFormSubmit, onHandleChange, errors, onHandleBlur }) => {
+const useStyles = makeStyles((theme) => ({
+  authWrapper: {
+    height: "100vh",
+    width: "100%",
+    zIndex: 1,
+    overflow: "hidden",
+    "&:after": {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      // content: `''`,
+      background: `url(${CIBTLogo}) no-repeat`,
+      zIndex: -1,
+      transform: "rotate(-10deg) scale(1.5)",
+      opacity: 0.1,
+    },
+  },
+
+  authForm: {
+    width: "100%",
+    maxWidth: 400,
+    boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+  },
+
+  primaryLink: {
+    marginTop: theme.spacing(1),
+    display: "inline-block",
+  },
+}));
+
+const Login = ({ onFormSubmit, onHandleChange, errors }) => {
+  const classes = useStyles();
+  const history = useHistory();
+
+  const onUserRegistration = (e) => {
+    e.preventDefault();
+    history.push("/register");
+  };
+
   return (
-    <div className="text-center">
-      <form className="form-signin" onSubmit={onFormSubmit}>
-        <img
-          className="mb-4"
-          src="/src/images/user-login.jpg"
-          alt=""
-          width="72"
-          height="72"
-        />
-        <h1 className="h3 mb-3">Please sign in</h1>
-        <div className="row">
-          <div className="col-md-7 offset-2">
-            <label htmlFor="inputEmail" className="sr-only">
-              Email address
-            </label>
-            <input
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      padding={2}
+      position="relative"
+      className={classes.authWrapper}
+    >
+      <Box
+        padding={3}
+        borderRadius={4}
+        bgcolor={common.white}
+        className={classes.authForm}
+      >
+        <form onSubmit={onFormSubmit}>
+          <Avatar alt="CIBT Login" src="/src/images/user-login.jpg" />
+          <Typography variant="h4" align="center" gutterBottom>
+            Please sign in
+          </Typography>
+
+          <Box mb={2}>
+            <TextField
+              fullWidth
+              required
+              label="Email address"
               type="email"
               name="email"
-              className="form-control-sm inputText"
-              placeholder="Email address"
-              size="35"
               autoFocus
               onChange={onHandleChange}
             />
-            <div className="inputError">{errors.email}</div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-md-7 offset-2">
-            <label htmlFor="inputPassword" className="sr-only">
-              Password
-            </label>
-            <input
+            <ErrorMessage errorMsg={errors.email} />
+          </Box>
+
+          <Box mb={2}>
+            <TextField
+              fullWidth
+              required
+              label="Password"
               type="password"
               name="password"
-              className="form-control-sm inputText"
-              placeholder="Password"
-              size="35"
               onChange={onHandleChange}
             />
-            <div className="inputError">{errors.password}</div>
-          </div>
-        </div>
-        <div className="m-2">
-          <button className="btn btn-md btn-primary">Sign in</button>
-        </div>
-      </form>
-      {/* <Link to="/register">Register</Link> */}
-    </div>
+            <ErrorMessage errorMsg={errors.password} />
+          </Box>
+
+          <Button
+            disableElevation
+            type="submit"
+            fullWidth
+            color="primary"
+            variant="contained"
+          >
+            Sign In
+          </Button>
+        </form>
+
+        <Box textAlign="center">
+          <Link
+            href="#"
+            onClick={onUserRegistration}
+            className={classes.primaryLink}
+          >
+            Register New User
+          </Link>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

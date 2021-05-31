@@ -2,7 +2,6 @@ import React from "react";
 import Advertisement from "../components/Advertisement";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import "../components/Home.css";
 import Stories from "../components/Stories";
 import PostsContainer from "../containers/PostsContainer";
 
