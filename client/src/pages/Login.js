@@ -1,7 +1,7 @@
 import {
-  Avatar,
   Box,
   Button,
+  Grid,
   Link,
   makeStyles,
   TextField,
@@ -11,14 +11,16 @@ import { common } from "@material-ui/core/colors";
 import React from "react";
 import { useHistory } from "react-router";
 import ErrorMessage from "../components/ErrorMessage";
-import CIBTLogo from "../images/cibtlogo.jpg";
+import CIBTLogo from "../images/cibtlogo.png";
 
 const useStyles = makeStyles((theme) => ({
   authWrapper: {
     height: "100vh",
-    width: "100%",
     zIndex: 1,
     overflow: "hidden",
+    padding: 0,
+    margin: 0,
+    width: "100%",
     "&:after": {
       position: "absolute",
       top: 0,
@@ -30,6 +32,13 @@ const useStyles = makeStyles((theme) => ({
       zIndex: -1,
       transform: "rotate(-10deg) scale(1.5)",
       opacity: 0.1,
+    },
+  },
+
+  logoContainer: {
+    maxWidth: 100,
+    [theme.breakpoints.up("md")]: {
+      marginRight: theme.spacing(10),
     },
   },
 
@@ -55,73 +64,87 @@ const Login = ({ onFormSubmit, onHandleChange, errors }) => {
   };
 
   return (
-    <Box
-      display="flex"
+    <Grid
+      container
+      spacing={4}
       alignItems="center"
-      justifyContent="center"
-      padding={2}
-      position="relative"
       className={classes.authWrapper}
     >
-      <Box
-        padding={3}
-        borderRadius={4}
-        bgcolor={common.white}
-        className={classes.authForm}
+      <Grid
+        item
+        xl={6}
+        lg={6}
+        md={6}
+        sm={12}
+        xs={12}
+        container
+        justify="flex-end"
       >
-        <form onSubmit={onFormSubmit}>
-          <Avatar alt="CIBT Login" src="/src/images/user-login.jpg" />
-          <Typography variant="h4" align="center" gutterBottom>
-            Please sign in
-          </Typography>
+        <figure className={classes.logoContainer}>
+          <img alt="CIBT Login" src={CIBTLogo} />
+        </figure>
+      </Grid>
 
-          <Box mb={2}>
-            <TextField
+      <Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
+        <Box
+          padding={4}
+          borderRadius={4}
+          bgcolor={common.white}
+          className={classes.authForm}
+        >
+          <form onSubmit={onFormSubmit}>
+            <Typography variant="h4" gutterBottom>
+              Please sign in
+            </Typography>
+
+            <Box mb={2}>
+              <TextField
+                fullWidth
+                required
+                label="Email address"
+                type="email"
+                name="email"
+                autoFocus
+                onChange={onHandleChange}
+              />
+              <ErrorMessage errorMsg={errors.email} />
+            </Box>
+
+            <Box mb={2}>
+              <TextField
+                fullWidth
+                required
+                label="Password"
+                type="password"
+                name="password"
+                onChange={onHandleChange}
+              />
+              <ErrorMessage errorMsg={errors.password} />
+            </Box>
+
+            <Button
+              disableElevation
+              type="submit"
               fullWidth
-              required
-              label="Email address"
-              type="email"
-              name="email"
-              autoFocus
-              onChange={onHandleChange}
-            />
-            <ErrorMessage errorMsg={errors.email} />
+              color="primary"
+              variant="contained"
+            >
+              Sign In
+            </Button>
+          </form>
+
+          <Box textAlign="center">
+            <Link
+              href="#"
+              onClick={onUserRegistration}
+              className={classes.primaryLink}
+            >
+              Register New User
+            </Link>
           </Box>
-
-          <Box mb={2}>
-            <TextField
-              fullWidth
-              required
-              label="Password"
-              type="password"
-              name="password"
-              onChange={onHandleChange}
-            />
-            <ErrorMessage errorMsg={errors.password} />
-          </Box>
-
-          <Button
-            disableElevation
-            type="submit"
-            fullWidth
-            color="primary"
-            variant="contained"
-          >
-            Sign In
-          </Button>
-        </form>
-
-        <Box textAlign="center">
-          <Link
-            href="#"
-            onClick={onUserRegistration}
-            className={classes.primaryLink}
-          >
-            Register New User
-          </Link>
         </Box>
-      </Box>
-    </Box>
+      </Grid>
+    </Grid>
   );
 };
 

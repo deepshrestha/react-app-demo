@@ -10,6 +10,7 @@ import AppTheme from "./AppTheme";
 import ErrorPage from "./components/ErrorPage";
 import HomeContainer from "./containers/HomeContainer";
 import LoginContainer from "./containers/LoginContainer";
+import UserRegistrationContainer from "./containers/UserRegistrationContainer";
 
 const generateClassName = createGenerateClassName({
   seed: "cibt",
@@ -23,8 +24,8 @@ const App = () => {
         <Router>
           <Switch>
             <Route exact path="/" component={LoginContainer} />
+            <Route path="/register" component={UserRegistrationContainer} />
             <Route path="/home" component={HomeContainer} />
-            {/* <Route path="/register" component={UserRegistrationContainer} /> */}
             <Route component={ErrorPage} />
           </Switch>
         </Router>

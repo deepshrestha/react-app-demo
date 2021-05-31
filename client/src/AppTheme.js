@@ -14,10 +14,10 @@ export default createMuiTheme({
 
   palette: {
     primary: {
-      main: "#8b3238",
+      main: "#86523C",
     },
     secondary: {
-      main: "#C3C9D6",
+      main: "#CCCCCC",
     },
     info: {
       main: "#0092AD",
@@ -63,6 +63,9 @@ export default createMuiTheme({
         body: {
           height: "100%",
           color: "#333333",
+        },
+        img: {
+          maxWidth: "100%",
         },
         "#root": {
           minHeight: "100%",
