@@ -46,9 +46,9 @@ export const useFormValidator = (props) => {
     validate(name, value, type, errors);
   };
 
-  const onHandleBlur = (e) => {
-    e.preventDefault();
-    const { name, value, type } = e.target;
+  const onHandleBlur = (event) => {
+    event.preventDefault();
+    const { name, value, type } = event.target;
     let errors = props.errors;
     validate(name, value, type, errors);
   };
@@ -56,17 +56,17 @@ export const useFormValidator = (props) => {
   function validate(name, value, type, errors) {
     switch (type) {
       case "text":
-        errors[name] =
-          value.length == 0 ? `${name} is required`.toUpperCase() : "";
-        break;
       case "password":
         errors[name] =
           value.length == 0 ? `${name} is required`.toUpperCase() : "";
         break;
       case "email":
-        errors.email = !emailPattern.test(value)
-          ? "Email is invalid!".toUpperCase()
-          : "";
+        errors.email =
+          value.length == 0
+            ? `${name} is required`.toUpperCase()
+            : !emailPattern.test(value)
+            ? "Email is invalid!".toUpperCase()
+            : "";
         break;
       default:
         break;

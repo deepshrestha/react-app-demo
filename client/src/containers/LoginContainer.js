@@ -23,7 +23,7 @@ const LoginContainer = () => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     const { email, password } = fields;
-    if (onHandleSubmit(event)) {
+    if (onHandleSubmit(e)) {
       if (email === "admin@admin.com" && password === "deep@123") {
         history.push("/home");
       } else {
