@@ -81,18 +81,18 @@ exports.likePost =  async (req,res) => {
 
 //comment on a post
 
-exports.commentPost =  async (req,res) => {
-  try {
-      const post = await Post.findById(req.params.id)
-      if (!post.likes.includes(req.body.userId)) {
-          await post.updateOne({ $push: {comments: {
-            coommentator: req.body.userId,
-            comment: req.body.comment
-          }}})
-          res.status(200).json("The comment has been posted.")
-      } 
-  } catch (errr) {
-      res.status(500).json(err)
-  }
-}
+// exports.commentPost =  async (req,res) => {
+//   try {
+//       const post = await Post.findById(req.params.id)
+//       if (!post.comments.includes(req.body.userId)) {
+//           await post.updateOne({ $push: {comments: {
+//             commentator: req.body.userId,
+//             comment: req.body.comment
+//           }}})
+//           res.status(200).json("The comment has been posted.")
+//       } 
+//   } catch (errr) {
+//       res.status(500).json(err)
+//   }
+// }
 
